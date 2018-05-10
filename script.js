@@ -6,6 +6,7 @@ var result = document.querySelector('#result');
 console.log(actorsArr)
 
 function getActorsBeforeYear(year) {
+    result.innerHTML = '';
     for (let i = 0; i < actorsArr.length; i++){
         if (actorsArr[i].dataset.year < year) {
             result.appendChild(actorsArr[i].cloneNode(true));
@@ -21,11 +22,21 @@ function getFullName() {
     result.innerHTML = newArr;
 }
 
-// function sortByAge() {
-//     for (let i = 0; i < actorsArr.length; i++){
-
-//     }
-// }
+function sortByAge() {
+    let resultArr = document.querySelectorAll('#result > li');
+    result.appendChild(actorsArr[0].cloneNode(true))
+    for (let i = 1; i < actorsArr.length; i++) {
+        resultArr = document.querySelectorAll('#result > li');
+        for (let j = 0; j < resultArr.length; j++) {
+            if (resultArr[j].lastChild.innerHTML < actorsArr[i].lastChild.innerHTML) {
+                result.insertBefore(actorsArr[i], resultArr[j]);
+                break;
+            } else {
+                result.appendChild(actorsArr[i]);
+            }
+        }
+    }
+}
 
 function getTotalAge(){
     let num = 0;
