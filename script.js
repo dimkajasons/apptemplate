@@ -13,18 +13,29 @@ var actors = [
 ]
 var actorsArr = document.querySelectorAll('.list > li');
 var result = document.querySelector('#result');
-var button = document.querySelector('#button')
-// button.addEventListener('click', asyncFunc())
+var button = document.querySelector('#button');
+var button2 = document.querySelector('#button2');
+// button.addEventListener('click', asyncFunc(true, actors));
+// button2.addEventListener('click', asyncFunc(false, actors))
 
 function asyncFunc (order, arr) {
     result.innerHTML = '';
     let localActors = arr.slice();
-    if (!order) {localActors.reverse()}
-    localActors.map(function(actor, index){
-        let actorHtmlElement = document.createElement('div');
-        actorHtmlElement.textContent = `${actor.firstName} ${actor.lastName}`
-            setTimeout(function(){  
-                    result.appendChild(actorHtmlElement); 
-            }, index * 100 );
-    })
+    if (!order) {
+        localActors.forEach(function (actor, index) {
+            let actorHtmlElement = document.createElement('div');
+            actorHtmlElement.textContent = `${actor.firstName} ${actor.lastName}`
+            setTimeout(function () {
+                result.appendChild(actorHtmlElement);
+            }, (arr.length - index) * 100);
+        })
+    } else {
+        localActors.forEach(function(actor, index){
+            let actorHtmlElement = document.createElement('div');
+            actorHtmlElement.textContent = `${actor.firstName} ${actor.lastName}`
+                setTimeout(function(){  
+                        result.appendChild(actorHtmlElement); 
+                }, index * 100 );
+        })
+    }
 }
