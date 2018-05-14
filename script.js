@@ -15,8 +15,15 @@ var actorsArr = document.querySelectorAll('.list > li');
 var result = document.querySelector('#result');
 var button = document.querySelector('#button');
 var button2 = document.querySelector('#button2');
-// button.addEventListener('click', asyncFunc(true, actors));
-// button2.addEventListener('click', asyncFunc(false, actors))
+
+asyncFuncCallerTrue = function() {
+    asyncFunc(true, actors)
+}
+asyncFuncCallerFalse = function () {
+    asyncFunc(false, actors)
+}
+button.addEventListener('click', asyncFuncCallerTrue);
+button2.addEventListener('click', asyncFuncCallerFalse);
 
 function asyncFunc (order, arr) {
     result.innerHTML = '';
